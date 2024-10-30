@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Price List</title>
+    <title>Fancy Product Price List</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -27,6 +27,7 @@
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
+            position: relative;
         }
         th {
             background-color: #5A9;
@@ -34,6 +35,25 @@
         }
         tr:hover {
             background-color: #f1f1f1;
+        }
+        .popup {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            top: 0;
+            left: 100%;
+            margin-left: 10px;
+            min-width: 150px;
+        }
+        td:hover .popup {
+            display: block;
+        }
+        select, input {
+            margin: 5px 0;
         }
     </style>
 </head>
@@ -48,188 +68,446 @@
         </thead>
         <tbody>
             <tr>
-                <td>Salted Pistachio</td>
+                <td>Salted Pistachio
+                    <div class="popup">
+                        <label for="salted-pistachio-weight">Weight:</label>
+                        <select id="salted-pistachio-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="salted-pistachio-quantity">Quantity:</label>
+                        <input type="number" id="salted-pistachio-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R365</td>
             </tr>
             <tr>
-                <td>Raw Pistachio</td>
+                <td>Raw Pistachio
+                    <div class="popup">
+                        <label for="raw-pistachio-weight">Weight:</label>
+                        <select id="raw-pistachio-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="raw-pistachio-quantity">Quantity:</label>
+                        <input type="number" id="raw-pistachio-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R780</td>
             </tr>
             <tr>
-                <td>Raw Cashew</td>
+                <td>Raw Cashew
+                    <div class="popup">
+                        <label for="raw-cashew-weight">Weight:</label>
+                        <select id="raw-cashew-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="raw-cashew-quantity">Quantity:</label>
+                        <input type="number" id="raw-cashew-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R275</td>
             </tr>
             <tr>
-                <td>Salted Cashew</td>
+                <td>Salted Cashew
+                    <div class="popup">
+                        <label for="salted-cashew-weight">Weight:</label>
+                        <select id="salted-cashew-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="salted-cashew-quantity">Quantity:</label>
+                        <input type="number" id="salted-cashew-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R290</td>
             </tr>
             <tr>
-                <td>Raw Almonds</td>
+                <td>Raw Almonds
+                    <div class="popup">
+                        <label for="raw-almonds-weight">Weight:</label>
+                        <select id="raw-almonds-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="raw-almonds-quantity">Quantity:</label>
+                        <input type="number" id="raw-almonds-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R200</td>
             </tr>
             <tr>
-                <td>Salted Almonds</td>
+                <td>Salted Almonds
+                    <div class="popup">
+                        <label for="salted-almonds-weight">Weight:</label>
+                        <select id="salted-almonds-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="salted-almonds-quantity">Quantity:</label>
+                        <input type="number" id="salted-almonds-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R212</td>
             </tr>
             <tr>
-                <td>Chocolate Peanuts</td>
+                <td>Chocolate Peanuts
+                    <div class="popup">
+                        <label for="chocolate-peanuts-weight">Weight:</label>
+                        <select id="chocolate-peanuts-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="chocolate-peanuts-quantity">Quantity:</label>
+                        <input type="number" id="chocolate-peanuts-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R148</td>
             </tr>
             <tr>
-                <td>Caramel Popcorn</td>
+                <td>Caramel Popcorn
+                    <div class="popup">
+                        <label for="caramel-popcorn-weight">Weight:</label>
+                        <select id="caramel-popcorn-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="caramel-popcorn-quantity">Quantity:</label>
+                        <input type="number" id="caramel-popcorn-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R86</td>
             </tr>
             <tr>
-                <td>Caramel Almonds</td>
+                <td>Caramel Almonds
+                    <div class="popup">
+                        <label for="caramel-almonds-weight">Weight:</label>
+                        <select id="caramel-almonds-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="caramel-almonds-quantity">Quantity:</label>
+                        <input type="number" id="caramel-almonds-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R175</td>
             </tr>
             <tr>
-                <td>Crunchy Mielies (Fruit Chutney/BBQ/Tomato)</td>
+                <td>Crunchy Mielies
+                    <div class="popup">
+                        <label for="crunchy-mielies-weight">Weight:</label>
+                        <select id="crunchy-mielies-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="crunchy-mielies-quantity">Quantity:</label>
+                        <input type="number" id="crunchy-mielies-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R70</td>
             </tr>
             <tr>
-                <td>Chevro</td>
-                <td>R140</td>
-            </tr>
-            <tr>
-                <td>Mango Strips</td>
-                <td>R300</td>
-            </tr>
-            <tr>
-                <td>Raw Pecan Nuts</td>
-                <td>R308</td>
-            </tr>
-            <tr>
-                <td>Salted Macadamia</td>
-                <td>R235</td>
-            </tr>
-            <tr>
-                <td>Cranberries</td>
-                <td>R205</td>
-            </tr>
-            <tr>
-                <td>Mixed Dried Fruits</td>
-                <td>R170</td>
-            </tr>
-            <tr>
-                <td>Prunes</td>
-                <td>R115</td>
-            </tr>
-            <tr>
-                <td>Fruit Cubes</td>
-                <td>R105</td>
-            </tr>
-            <tr>
-                <td>Salted Peanuts</td>
-                <td>R85</td>
-            </tr>
-            <tr>
-                <td>Turkish Apricots (Dried)</td>
+                <td>Turkish Apricots (Dried)
+                    <div class="popup">
+                        <label for="turkish-apricots-weight">Weight:</label>
+                        <select id="turkish-apricots-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="turkish-apricots-quantity">Quantity:</label>
+                        <input type="number" id="turkish-apricots-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R220</td>
             </tr>
             <tr>
-                <td>Salted Mixed Nuts</td>
+                <td>Salted Mixed Nuts
+                    <div class="popup">
+                        <label for="salted-mixed-nuts-weight">Weight:</label>
+                        <select id="salted-mixed-nuts-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="salted-mixed-nuts-quantity">Quantity:</label>
+                        <input type="number" id="salted-mixed-nuts-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R255</td>
             </tr>
             <tr>
-                <td>Raw Mixed Nuts</td>
+                <td>Raw Mixed Nuts
+                    <div class="popup">
+                        <label for="raw-mixed-nuts-weight">Weight:</label>
+                        <select id="raw-mixed-nuts-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="raw-mixed-nuts-quantity">Quantity:</label>
+                        <input type="number" id="raw-mixed-nuts-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R240</td>
             </tr>
             <tr>
-                <td>Fitness Snack</td>
+                <td>Fitness Snack
+                    <div class="popup">
+                        <label for="fitness-snack-weight">Weight:</label>
+                        <select id="fitness-snack-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="fitness-snack-quantity">Quantity:</label>
+                        <input type="number" id="fitness-snack-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R110</td>
             </tr>
             <tr>
-                <td>Almond Flakes</td>
+                <td>Almond Flakes
+                    <div class="popup">
+                        <label for="almond-flakes-weight">Weight:</label>
+                        <select id="almond-flakes-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="almond-flakes-quantity">Quantity:</label>
+                        <input type="number" id="almond-flakes-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R245</td>
             </tr>
             <tr>
-                <td>Raw Walnuts</td>
+                <td>Raw Walnuts
+                    <div class="popup">
+                        <label for="raw-walnuts-weight">Weight:</label>
+                        <select id="raw-walnuts-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="raw-walnuts-quantity">Quantity:</label>
+                        <input type="number" id="raw-walnuts-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R250</td>
             </tr>
             <tr>
-                <td>Macadamia & Cranberry Snack</td>
+                <td>Macadamia & Cranberry Snack
+                    <div class="popup">
+                        <label for="macadamia-cranberry-weight">Weight:</label>
+                        <select id="macadamia-cranberry-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="macadamia-cranberry-quantity">Quantity:</label>
+                        <input type="number" id="macadamia-cranberry-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R300</td>
             </tr>
             <tr>
-                <td>Pitted Dates</td>
-                <td>R70</td>
+                <td>Raw Pecan Nuts
+                    <div class="popup">
+                        <label for="raw-pecan-weight">Weight:</label>
+                        <select id="raw-pecan-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="raw-pecan-quantity">Quantity:</label>
+                        <input type="number" id="raw-pecan-quantity" min="1" value="1">
+                    </div>
+                </td>
+                <td>R308</td>
             </tr>
             <tr>
-                <td>Peanut Brittle</td>
-                <td>R100</td>
+                <td>Salted Macadamia
+                    <div class="popup">
+                        <label for="salted-macadamia-weight">Weight:</label>
+                        <select id="salted-macadamia-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="salted-macadamia-quantity">Quantity:</label>
+                        <input type="number" id="salted-macadamia-quantity" min="1" value="1">
+                    </div>
+                </td>
+                <td>R235</td>
             </tr>
             <tr>
-                <td>Salad Sprinkle</td>
-                <td>R100</td>
-            </tr>
-            <tr>
-                <td>Pumpkin Seeds</td>
-                <td>R170</td>
-            </tr>
-            <tr>
-                <td>Sunflower Seeds</td>
+                <td>Cranberries
+                    <div class="popup">
+                        <label for="cranberries-weight">Weight:</label>
+                        <select id="cranberries-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="cranberries-quantity">Quantity:</label>
+                        <input type="number" id="cranberries-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R80</td>
             </tr>
             <tr>
-                <td>Popcorn Seeds</td>
-                <td>R35</td>
+                <td>Dried Kiwi
+                    <div class="popup">
+                        <label for="dried-kiwi-weight">Weight:</label>
+                        <select id="dried-kiwi-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="dried-kiwi-quantity">Quantity:</label>
+                        <input type="number" id="dried-kiwi-quantity" min="1" value="1">
+                    </div>
+                </td>
+                <td>R90</td>
             </tr>
             <tr>
-                <td>Quinoa Seeds</td>
-                <td>R116</td>
+                <td>Dried Mangos
+                    <div class="popup">
+                        <label for="dried-mangos-weight">Weight:</label>
+                        <select id="dried-mangos-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="dried-mangos-quantity">Quantity:</label>
+                        <input type="number" id="dried-mangos-quantity" min="1" value="1">
+                    </div>
+                </td>
+                <td>R99</td>
             </tr>
             <tr>
-                <td>Dried Peaches</td>
-                <td>R185</td>
+                <td>Dried Peaches
+                    <div class="popup">
+                        <label for="dried-peaches-weight">Weight:</label>
+                        <select id="dried-peaches-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="dried-peaches-quantity">Quantity:</label>
+                        <input type="number" id="dried-peaches-quantity" min="1" value="1">
+                    </div>
+                </td>
+                <td>R98</td>
             </tr>
             <tr>
-                <td>Golden Sultanas</td>
+                <td>Dried Apricots
+                    <div class="popup">
+                        <label for="dried-apricots-weight">Weight:</label>
+                        <select id="dried-apricots-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="dried-apricots-quantity">Quantity:</label>
+                        <input type="number" id="dried-apricots-quantity" min="1" value="1">
+                    </div>
+                </td>
+                <td>R110</td>
+            </tr>
+            <tr>
+                <td>Rooiboost Lemon Iced Tea
+                    <div class="popup">
+                        <label for="rooiboost-lemon-weight">Weight:</label>
+                        <select id="rooiboost-lemon-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="rooiboost-lemon-quantity">Quantity:</label>
+                        <input type="number" id="rooiboost-lemon-quantity" min="1" value="1">
+                    </div>
+                </td>
                 <td>R100</td>
             </tr>
             <tr>
-                <td>Brazil Nuts</td>
-                <td>R250</td>
-            </tr>
-            <tr>
-                <td>Pink & White Almonds</td>
-                <td>R190</td>
-            </tr>
-            <tr>
-                <td>White Almonds</td>
-                <td>R180</td>
-            </tr>
-            <tr>
-                <td>Jungle Fruit Mix</td>
-                <td>R170</td>
-            </tr>
-            <tr>
-                <td>Hawaiian Sun Mix</td>
-                <td>R150</td>
-            </tr>
-            <tr>
-                <td>Candied Ginger Slices</td>
-                <td>R180</td>
-            </tr>
-            <tr>
-                <td>Pine Kernels</td>
-                <td>R950</td>
-            </tr>
-            <tr>
-                <td>Spicy Cashews</td>
-                <td>R290</td>
-            </tr>
-            <tr>
-                <td>Goji Berries</td>
-                <td>R240</td>
-            </tr>
-            <tr>
-                <td>Caramel Cashews</td>
-                <td>R210</td>
-            </tr>
-            <tr>
-                <td>Dry Kiwi Slices</td>
-                <td>R165</td>
+                <td>Rooiboost Blackberry Iced Tea
+                    <div class="popup">
+                        <label for="rooiboost-blackberry-weight">Weight:</label>
+                        <select id="rooiboost-blackberry-weight">
+                            <option value="0.05">50g</option>
+                            <option value="0.1">100g</option>
+                            <option value="0.25">250g</option>
+                            <option value="0.5">500g</option>
+                            <option value="1">1kg</option>
+                        </select>
+                        <label for="rooiboost-blackberry-quantity">Quantity:</label>
+                        <input type="number" id="rooiboost-blackberry-quantity" min="1" value="1">
+                    </div>
+                </td>
+                <td>R100</td>
             </tr>
         </tbody>
     </table>
