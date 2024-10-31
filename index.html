@@ -4,102 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>R&A Snacks</title>
-    <style>
-        /* Basic Styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-        
-        table {
-            width: 80%;
-            margin: 2rem auto;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        th {
-            background-color: #00796b;
-            color: #fff;
-        }
-
-        /* Styling for Hover Popup */
-        .popup {
-            position: relative;
-            display: inline-block;
-        }
-
-        .popup-content {
-            display: none;
-            position: absolute;
-            top: 30px; /* Adjust the position to prevent obstruction */
-            left: 0;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            width: 200px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transform: translateY(10px); /* Pre-animation starting position */
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade and slide */
-        }
-
-        /* Hover Effect */
-        .popup:hover .popup-content {
-            display: block;
-            opacity: 1;
-            transform: translateY(0); /* Slides up into view */
-        }
-
-        /* Style for Labels and Select Inputs */
-        label, select, input[type="number"] {
-            display: block;
-            margin: 5px 0;
-        }
-        
-        select, input[type="number"] {
-            width: 100%;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <table>
-        <thead>
-            <tr>
-                <th>Item</th>
-                <th>Price (R)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>Salted Pistachio<div class="popup"><span class="popup-content"><label for="salted-pistachio-weight">Weight:</label><select id="salted-pistachio-weight"><option>50g</option><option>100g</option><option>250g</option><option>500g</option><option>1kg</option></select><label for="salted-pistachio-quantity">Quantity:</label><input type="number" min="1" value="1"></span></div></td><td>365</td></tr>
-            <tr><td>Raw Pistachio<div class="popup"><span class="popup-content"><label for="raw-pistachio-weight">Weight:</label><select id="raw-pistachio-weight"><option>50g</option><option>100g</option><option>250g</option><option>500g</option><option>1kg</option></select><label for="raw-pistachio-quantity">Quantity:</label><input type="number" min="1" value="1"></span></div></td><td>780</td></tr>
-            <tr><td>Raw Cashew<div class="popup"><span class="popup-content"><label for="raw-cashew-weight">Weight:</label><select id="raw-cashew-weight"><option>50g</option><option>100g</option><option>250g</option><option>500g</option><option>1kg</option></select><label for="raw-cashew-quantity">Quantity:</label><input type="number" min="1" value="1"></span></div></td><td>275</td></tr>
-            <tr><td>Salted Cashew<div class="popup"><span class="popup-content"><label for="salted-cashew-weight">Weight:</label><select id="salted-cashew-weight"><option>50g</option><option>100g</option><option>250g</option><option>500g</option><option>1kg</option></select><label for="salted-cashew-quantity">Quantity:</label><input type="number" min="1" value="1"></span></div></td><td>290</td></tr>
-            <tr><td>Raw Almonds<div class="popup"><span class="popup-content"><label for="raw-almonds-weight">Weight:</label><select id="raw-almonds-weight"><option>50g</option><option>100g</option><option>250g</option><option>500g</option><option>1kg</option></select><label for="raw-almonds-quantity">Quantity:</label><input type="number" min="1" value="1"></span></div></td><td>200</td></tr>
-            <tr><td>Salted Almonds<div class="popup"><span class="popup-content"><label for="salted-almonds-weight">Weight:</label><select id="salted-almonds-weight"><option>50g</option><option>100g</option><option>250g</option><option>500g</option><option>1kg</option></select><label for="salted-almonds-quantity">Quantity:</label><input type="number" min="1" value="1"></span></div></td><td>212</td></tr>
-            <tr><td>Chocolate Peanuts<div class="popup"><span class="popup-content"><label for="chocolate-peanuts-weight">Weight:</label><select id="chocolate-peanuts-weight"><option>50g</option><option>100g</option><option>250g</option><option>500g</option><option>1kg</option></select><label for="chocolate-peanuts-quantity">Quantity:</label><input type="number" min="1" value="1"></span></div></td><td>148</td></tr>
-            <tr><td>Caramel Popcorn<div class="popup"><span class="popup-content"><label for="caramel-popcorn-weight">Weight:</label><select id="caramel-popcorn-weight"><option>50g</option><option>100g</option><option>250g</option><option>500g</option><option>1kg</option></select><label for="caramel-popcorn-quantity">Quantity:</label><input type="number" min="1" value="1"></span></div></td><td>86</td></tr>
-            <tr><td>Caramel Almonds<div class="popup"><span class="popup-content"><label for="caramel-almonds-weight">Weight:</label><select id="caramel-almonds-weight"><option>50g</option><option>100g</option><option>250g</option><option>500g</option><option>1kg</option></select><label for="caramel-almonds-quantity">Quantity:</label><input type="number" min="1" value="1"></span></div></td><td>175</td></tr>
-            <tr><td>Crunchy Mielies (Fruit Chutney/BBQ/Tomato)<div class="popup"><span class="popup-content"><label for="crunchy-mielies-weight">Weight:</label><select id="crunchy-mielies-weight"><option>50g</option><option>100g</option><option>250g</option><option>500g</option><option>1kg</option></select><label for="crunchy-mielies-quantity">Quantity:</label><input type="number" min="1" value="1"></span></div></td><td>70</td></tr>
-            <!-- Continue the same structure for each product, all the way down to Goji Berries -->
-        </tbody>
-    </table>
+    <header>
+        <h1>R&A Snacks</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Our Products</h2>
+        <ul class="product-list">
+            </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 R&A Snacks</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
-
