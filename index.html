@@ -78,6 +78,39 @@
             background-color: #6f431b; /* Slightly darker hover effect */
         }
 
+        /* Cart Section */
+        .cart {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #8b5a2b;
+            border-radius: 8px;
+            background-color: #f9f5f0;
+        }
+        .cart h3 {
+            margin-top: 0;
+        }
+        .cart ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .cart ul li {
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .cart button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            background-color: #8b5a2b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .cart button:hover {
+            background-color: #6f431b;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -107,7 +140,7 @@
                 <option value="100g">100g - $2.99</option>
                 <option value="250g">250g - $5.99</option>
             </select>
-            <button>Add to Cart</button>
+            <button onclick="addToCart('Almonds', this)">Add to Cart</button>
         </div>
         <div class="product">
             <span>Cashews</span>
@@ -115,7 +148,7 @@
                 <option value="100g">100g - $3.49</option>
                 <option value="250g">250g - $6.49</option>
             </select>
-            <button>Add to Cart</button>
+            <button onclick="addToCart('Cashews', this)">Add to Cart</button>
         </div>
         <div class="product">
             <span>Pistachios</span>
@@ -123,7 +156,14 @@
                 <option value="100g">100g - $3.99</option>
                 <option value="250g">250g - $7.99</option>
             </select>
-            <button>Add to Cart</button>
+            <button onclick="addToCart('Pistachios', this)">Add to Cart</button>
+        </div>
+
+        <!-- Cart Section -->
+        <div class="cart" id="cart">
+            <h3>Your Cart</h3>
+            <ul id="cart-items"></ul>
+            <button onclick="sendToWhatsApp()">Place Order via WhatsApp</button>
         </div>
     </main>
 
@@ -131,6 +171,34 @@
     <footer>
         &copy; 2025 R&A Snacks. All rights reserved.
     </footer>
+
+    <script>
+        const cart = [];
+
+        function addToCart(productName, button) {
+            const select = button.previousElementSibling;
+            const weight = select.options[select.selectedIndex].text;
+            cart.push(`${productName} (${weight})`);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                cartItems.appendChild(li);
+            });
+        }
+
+        function sendToWhatsApp() {
+            const phoneNumber = '<your-phone-number>'; // Replace with your WhatsApp number
+            const orderDetails = cart.join('%0A'); // Encodes items for URL
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=Order:%0A${orderDetails}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 </body>
 </html>
 
