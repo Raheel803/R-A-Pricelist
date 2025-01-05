@@ -97,6 +97,7 @@
             margin: 5px 0;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
         .cart button {
             margin-top: 10px;
@@ -109,16 +110,6 @@
         }
         .cart button:hover {
             background-color: #6f431b;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 10px;
-            margin-top: 20px;
-            font-size: 0.9em;
-            background-color: #f9f5f0;
-            color: #3c3c3b;
         }
     </style>
 </head>
@@ -137,24 +128,24 @@
         <div class="product">
             <span>Almonds</span>
             <select>
-                <option value="100g">100g - $2.99</option>
-                <option value="250g">250g - $5.99</option>
+                <option value="2.99">100g - R2.99</option>
+                <option value="5.99">250g - R5.99</option>
             </select>
             <button onclick="addToCart('Almonds', this)">Add to Cart</button>
         </div>
         <div class="product">
             <span>Cashews</span>
             <select>
-                <option value="100g">100g - $3.49</option>
-                <option value="250g">250g - $6.49</option>
+                <option value="3.49">100g - R3.49</option>
+                <option value="6.49">250g - R6.49</option>
             </select>
             <button onclick="addToCart('Cashews', this)">Add to Cart</button>
         </div>
         <div class="product">
             <span>Pistachios</span>
             <select>
-                <option value="100g">100g - $3.99</option>
-                <option value="250g">250g - $7.99</option>
+                <option value="3.99">100g - R3.99</option>
+                <option value="7.99">250g - R7.99</option>
             </select>
             <button onclick="addToCart('Pistachios', this)">Add to Cart</button>
         </div>
@@ -163,6 +154,7 @@
         <div class="cart" id="cart">
             <h3>Your Cart</h3>
             <ul id="cart-items"></ul>
+            <p><strong>Total: R<span id="cart-total">0.00</span></strong></p>
             <button onclick="sendToWhatsApp()">Place Order via WhatsApp</button>
         </div>
     </main>
@@ -174,32 +166,50 @@
 
     <script>
         const cart = [];
+        let total = 0;
 
         function addToCart(productName, button) {
             const select = button.previousElementSibling;
             const weight = select.options[select.selectedIndex].text;
-            cart.push(`${productName} (${weight})`);
+            const price = parseFloat(select.value);
+
+            cart.push({ name: productName, weight, price });
+            total += price;
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            total -= cart[index].price;
+            cart.splice(index, 1);
             updateCart();
         }
 
         function updateCart() {
             const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+
             cartItems.innerHTML = '';
-            cart.forEach(item => {
+            cart.forEach((item, index) => {
                 const li = document.createElement('li');
-                li.textContent = item;
+                li.innerHTML = `${item.name} (${item.weight}) - R${item.price.toFixed(2)} <button onclick="removeFromCart(${index})">Remove</button>`;
                 cartItems.appendChild(li);
             });
+
+            cartTotal.textContent = total.toFixed(2);
         }
 
         function sendToWhatsApp() {
             const phoneNumber = '<your-phone-number>'; // Replace with your WhatsApp number
-            const orderDetails = cart.join('%0A'); // Encodes items for URL
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=Order:%0A${orderDetails}`;
+            const orderDetails = cart
+                .map(item => `${item.name} (${item.weight}) - R${item.price.toFixed(2)}`)
+                .join('%0A');
+            const totalDetails = `Total: R${total.toFixed(2)}`;
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=Order:%0A${orderDetails}%0A%0A${totalDetails}`;
             window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
 </html>
+
 
 
