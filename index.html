@@ -3,136 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R&A Snacks Price List</title>
+    <title>R&A Snacks - Interactive Price List</title>
     <style>
+        /* General styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fdfaf4;
-            color: #333;
+            background-color: #fdfaf4; /* Light earth-tone background */
+            color: #3c3c3b; /* Dark earthy text color */
         }
+
+        /* Header */
         header {
-            text-align: center;
-            background-color: #8b5a2b;
+            background-color: #8b5a2b; /* Deep earth-tone brown */
             color: #fff;
             padding: 20px 0;
+            text-align: center;
         }
         header h1 {
             margin: 0;
-            font-size: 2em;
+            font-size: 2.5em;
         }
         header p {
             margin: 5px 0 0;
-            font-size: 1em;
+            font-size: 1.2em;
         }
+
+        /* Main content */
         main {
-            padding: 20px;
             max-width: 800px;
-            margin: 0 auto;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff; /* White card background */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #f4e3d6;
-            font-weight: bold;
-        }
-        .highlight {
-            background-color: #fcefc7;
-            font-weight: bold;
-        }
-        .special-offers {
-            background-color: #f8f3e8;
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-top: 20px;
-            border-radius: 5px;
-        }
-        .special-offers h2 {
+        main h2 {
             margin-top: 0;
+            color: #8b5a2b;
+        }
+
+        /* Product List */
+        .product {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .product:last-child {
+            border-bottom: none;
+        }
+        .product span {
+            font-size: 1.1em;
+        }
+        .product select {
+            padding: 5px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f5f0; /* Subtle beige */
+        }
+        .product button {
+            padding: 10px 15px;
+            font-size: 1em;
+            background-color: #8b5a2b;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .product button:hover {
+            background-color: #6f431b; /* Slightly darker hover effect */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            background-color: #f9f5f0;
+            color: #3c3c3b;
         }
     </style>
 </head>
 <body>
+    <!-- Header Section -->
     <header>
-        <h1>R&A Snacks Price List</h1>
-        <p>Bringing Nature’s Goodness to Your Doorstep</p>
+        <h1>R&A Snacks</h1>
+        <p>Interactive Price List - Choose Your Favorites</p>
     </header>
+
+    <!-- Main Content Section -->
     <main>
-        <h2>Nuts</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Weight</th>
-                    <th>Price</th>
-                    <th>Benefits</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Almonds</td>
-                    <td>250g</td>
-                    <td>$5.99</td>
-                    <td>✅ High Protein</td>
-                </tr>
-                <tr>
-                    <td>Cashews</td>
-                    <td>250g</td>
-                    <td>$6.49</td>
-                    <td>✅ Healthy Fats</td>
-                </tr>
-                <tr class="highlight">
-                    <td>Pistachios</td>
-                    <td>200g</td>
-                    <td>$7.99</td>
-                    <td>✅ Heart-Healthy</td>
-                </tr>
-            </tbody>
-        </table>
+        <h2>Select Your Products</h2>
 
-        <h2>Dried Fruits</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Weight</th>
-                    <th>Price</th>
-                    <th>Benefits</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Dried Mango</td>
-                    <td>200g</td>
-                    <td>$4.99</td>
-                    <td>✅ High Fiber</td>
-                </tr>
-                <tr>
-                    <td>Dried Cranberries</td>
-                    <td>250g</td>
-                    <td>$5.49</td>
-                    <td>✅ Antioxidants</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <div class="special-offers">
-            <h2>Special Offers</h2>
-            <ul>
-                <li><strong>Bundle Deal:</strong> Get any 3 packs of nuts for $15.99!</li>
-                <li><strong>Limited Offer:</strong> 10% off dried peaches this week only!</li>
-            </ul>
+        <!-- Product List -->
+        <div class="product">
+            <span>Almonds</span>
+            <select>
+                <option value="100g">100g - $2.99</option>
+                <option value="250g">250g - $5.99</option>
+            </select>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <span>Cashews</span>
+            <select>
+                <option value="100g">100g - $3.49</option>
+                <option value="250g">250g - $6.49</option>
+            </select>
+            <button>Add to Cart</button>
+        </div>
+        <div class="product">
+            <span>Pistachios</span>
+            <select>
+                <option value="100g">100g - $3.99</option>
+                <option value="250g">250g - $7.99</option>
+            </select>
+            <button>Add to Cart</button>
         </div>
     </main>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2025 R&A Snacks. All rights reserved.
+    </footer>
 </body>
 </html>
+
 
