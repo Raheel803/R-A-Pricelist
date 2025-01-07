@@ -10,13 +10,13 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fdfaf4; /* Light earth-tone background */
-            color: #3c3c3b; /* Dark earthy text color */
+            background-color: #f6f6f6; /* Light elegant grey background */
+            color: #444; /* Subtle dark grey for text */
         }
 
         /* Header */
         header {
-            background-color: #8b5a2b; /* Deep earth-tone brown */
+            background-color: #5a5a5a; /* Elegant earth-grey tone */
             color: #fff;
             padding: 20px 0;
             text-align: center;
@@ -32,16 +32,36 @@
 
         /* Main content */
         main {
-            max-width: 800px;
+            max-width: 900px;
             margin: 20px auto;
             padding: 20px;
             background-color: #fff; /* White card background */
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         main h2 {
             margin-top: 0;
-            color: #8b5a2b;
+            color: #5a5a5a;
+        }
+
+        /* Category Filter */
+        .categories {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .categories button {
+            padding: 10px 15px;
+            background-color: #5a5a5a;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .categories button:hover {
+            background-color: #444;
         }
 
         /* Product List */
@@ -55,6 +75,9 @@
         .product:last-child {
             border-bottom: none;
         }
+        .product.hidden {
+            display: none;
+        }
         .product span {
             font-size: 1.1em;
         }
@@ -63,28 +86,27 @@
             font-size: 1em;
             border: 1px solid #ccc;
             border-radius: 5px;
-            background-color: #f9f5f0; /* Subtle beige */
         }
         .product button {
             padding: 10px 15px;
             font-size: 1em;
-            background-color: #8b5a2b;
+            background-color: #5a5a5a;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         .product button:hover {
-            background-color: #6f431b; /* Slightly darker hover effect */
+            background-color: #444;
         }
 
         /* Cart Section */
         .cart {
             margin-top: 20px;
             padding: 15px;
-            border: 1px solid #8b5a2b;
+            border: 1px solid #5a5a5a;
             border-radius: 8px;
-            background-color: #f9f5f0;
+            background-color: #f6f6f6;
         }
         .cart h3 {
             margin-top: 0;
@@ -102,14 +124,39 @@
         .cart button {
             margin-top: 10px;
             padding: 10px 15px;
-            background-color: #8b5a2b;
+            background-color: #5a5a5a;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         .cart button:hover {
-            background-color: #6f431b;
+            background-color: #444;
+        }
+
+        /* Special Requests */
+        .special-requests {
+            margin-top: 20px;
+        }
+        .special-requests textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .product {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .product span,
+            .product select,
+            .product button {
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
@@ -124,8 +171,19 @@
     <main>
         <h2>Select Your Products</h2>
 
+        <!-- Categories Filter -->
+        <div class="categories">
+            <button onclick="filterCategory('all')">All</button>
+            <button onclick="filterCategory('Nuts')">Nuts</button>
+            <button onclick="filterCategory('Dried Fruits')">Dried Fruits</button>
+            <button onclick="filterCategory('Sweet Snacks')">Sweet Snacks</button>
+            <button onclick="filterCategory('Biltong')">Biltong</button>
+            <button onclick="filterCategory('Health Foods and Supplements')">Health Foods and Supplements</button>
+            <button onclick="filterCategory('Create your own gift box')">Create Your Own Gift Box</button>
+        </div>
+
         <!-- Product List -->
-        <div class="product">
+        <div class="product" data-category="Nuts">
             <span>Almonds</span>
             <select>
                 <option value="2.99">100g - R2.99</option>
@@ -133,29 +191,30 @@
             </select>
             <button onclick="addToCart('Almonds', this)">Add to Cart</button>
         </div>
-        <div class="product">
-            <span>Cashews</span>
-            <select>
-                <option value="3.49">100g - R3.49</option>
-                <option value="6.49">250g - R6.49</option>
-            </select>
-            <button onclick="addToCart('Cashews', this)">Add to Cart</button>
-        </div>
-        <div class="product">
-            <span>Pistachios</span>
+        <div class="product" data-category="Dried Fruits">
+            <span>Dried Mango</span>
             <select>
                 <option value="3.99">100g - R3.99</option>
                 <option value="7.99">250g - R7.99</option>
             </select>
-            <button onclick="addToCart('Pistachios', this)">Add to Cart</button>
+            <button onclick="addToCart('Dried Mango', this)">Add to Cart</button>
         </div>
+        <!-- Add more products as needed with appropriate categories -->
 
         <!-- Cart Section -->
         <div class="cart" id="cart">
             <h3>Your Cart</h3>
             <ul id="cart-items"></ul>
             <p><strong>Total: R<span id="cart-total">0.00</span></strong></p>
-            <button onclick="sendToWhatsApp()">Place Order via WhatsApp</button>
+
+            <!-- Special Requests -->
+            <div class="special-requests">
+                <h4>Special Requests</h4>
+                <textarea id="special-requests" rows="3" placeholder="Add any special requests or notes here..."></textarea>
+            </div>
+
+            <!-- Order Confirmation -->
+            <button onclick="confirmOrder()">Confirm Order</button>
         </div>
     </main>
 
@@ -198,18 +257,39 @@
             cartTotal.textContent = total.toFixed(2);
         }
 
+        function filterCategory(category) {
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.classList.remove('hidden');
+                } else {
+                    product.classList.add('hidden');
+                }
+            });
+        }
+
+        function confirmOrder() {
+            const confirmation = confirm('Are you sure you want to place this order?');
+            if (confirmation) {
+                sendToWhatsApp();
+            }
+        }
+
         function sendToWhatsApp() {
             const phoneNumber = '<your-phone-number>'; // Replace with your WhatsApp number
             const orderDetails = cart
                 .map(item => `${item.name} (${item.weight}) - R${item.price.toFixed(2)}`)
                 .join('%0A');
             const totalDetails = `Total: R${total.toFixed(2)}`;
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=Order:%0A${orderDetails}%0A%0A${totalDetails}`;
+            const specialRequests = document.getElementById('special-requests').value;
+            const requestsDetails = specialRequests ? `%0A%0ASpecial Requests:%0A${specialRequests}` : '';
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=Order:%0A${orderDetails}%0A%0A${totalDetails}${requestsDetails}`;
             window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
 </html>
+
 
 
 
