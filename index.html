@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R&A Snacks - Interactive Price List</title>
+    <title>R&A Snacks - Pricelist/Order Form</title>
     <style>
         /* General styles */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif; /* Modern, simple font */
             margin: 0;
             padding: 0;
             background-color: #f6f6f6; /* Light elegant grey background */
@@ -59,9 +59,11 @@
             border-radius: 5px;
             cursor: pointer;
             margin: 5px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
         }
         .categories button:hover {
             background-color: #444;
+            transform: scale(1.05); /* Micro effect on hover */
         }
 
         /* Product List */
@@ -129,21 +131,49 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: box-shadow 0.3s ease, transform 0.2s ease;
         }
         .cart button:hover {
             background-color: #444;
+            box-shadow: 0 0 15px #444;
+            transform: scale(1.05);
         }
 
         /* Special Requests */
         .special-requests {
             margin-top: 20px;
+            text-align: center;
         }
         .special-requests textarea {
-            width: 100%;
+            width: 80%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             resize: none;
+        }
+
+        /* Social Media Cards */
+        .social-media {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            padding: 15px;
+        }
+        .social-media .card {
+            flex: 1;
+            margin: 0 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .social-media .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
         /* Responsive Design */
@@ -164,7 +194,7 @@
     <!-- Header Section -->
     <header>
         <h1>R&A Snacks</h1>
-        <p>Interactive Price List - Choose Your Favorites</p>
+        <p>Pricelist/Order Form</p>
     </header>
 
     <!-- Main Content Section -->
@@ -216,79 +246,9 @@
             <!-- Order Confirmation -->
             <button onclick="confirmOrder()">Confirm Order</button>
         </div>
-    </main>
 
-    <!-- Footer Section -->
-    <footer>
-        &copy; 2025 R&A Snacks. All rights reserved.
-    </footer>
-
-    <script>
-        const cart = [];
-        let total = 0;
-
-        function addToCart(productName, button) {
-            const select = button.previousElementSibling;
-            const weight = select.options[select.selectedIndex].text;
-            const price = parseFloat(select.value);
-
-            cart.push({ name: productName, weight, price });
-            total += price;
-            updateCart();
-        }
-
-        function removeFromCart(index) {
-            total -= cart[index].price;
-            cart.splice(index, 1);
-            updateCart();
-        }
-
-        function updateCart() {
-            const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-
-            cartItems.innerHTML = '';
-            cart.forEach((item, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `${item.name} (${item.weight}) - R${item.price.toFixed(2)} <button onclick="removeFromCart(${index})">Remove</button>`;
-                cartItems.appendChild(li);
-            });
-
-            cartTotal.textContent = total.toFixed(2);
-        }
-
-        function filterCategory(category) {
-            const products = document.querySelectorAll('.product');
-            products.forEach(product => {
-                if (category === 'all' || product.dataset.category === category) {
-                    product.classList.remove('hidden');
-                } else {
-                    product.classList.add('hidden');
-                }
-            });
-        }
-
-        function confirmOrder() {
-            const confirmation = confirm('Are you sure you want to place this order?');
-            if (confirmation) {
-                sendToWhatsApp();
-            }
-        }
-
-        function sendToWhatsApp() {
-            const phoneNumber = '<your-phone-number>'; // Replace with your WhatsApp number
-            const orderDetails = cart
-                .map(item => `${item.name} (${item.weight}) - R${item.price.toFixed(2)}`)
-                .join('%0A');
-            const totalDetails = `Total: R${total.toFixed(2)}`;
-            const specialRequests = document.getElementById('special-requests').value;
-            const requestsDetails = specialRequests ? `%0A%0ASpecial Requests:%0A${specialRequests}` : '';
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=Order:%0A${orderDetails}%0A%0A${totalDetails}${requestsDetails}`;
-            window.open(whatsappUrl, '_blank');
-        }
-    </script>
-</body>
-</html>
+        <!-- Social Media Section -->
+        <div
 
 
 
