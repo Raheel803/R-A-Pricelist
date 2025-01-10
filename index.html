@@ -116,6 +116,27 @@
             box-shadow: 0 0 10px #808080, 0 -10px 10px #ffffff; /* Gradient glow effect */
             transform: scale(1.05);
         }
+        <style>
+    /* Product List */
+    .products span {
+        font-size: 1.1em;
+        color: #f3f5f1; /* Matches categories text color */
+    }
+    .product button {
+        color: #f3f5f1; /* Matches categories text color */
+        padding: 10px 15px;
+        font-size: 1em;
+        background-color: transparent; /* Transparent buttons */
+        border: 2px solid #66a711; /* Accent color */
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.3s ease-in-out;
+    }
+    .product button:hover {
+        box-shadow: 0 0 10px #808080, 0 -10px 10px #ffffff; /* Gradient glow effect */
+        transform: scale(1.05);
+    }
+    </style
 
         /* Cart Section */
         .cart {
@@ -220,9 +241,8 @@
             <button onclick="filterCategory('Nuts')">Nuts</button>
             <button onclick="filterCategory('Dried Fruits')">Dried Fruits</button>
             <button onclick="filterCategory('Sweet Snacks')">Sweet Snacks</button>
-            <button onclick="filterCategory('Biltong')">Biltong</button>
-            <button onclick="filterCategory('Health Foods and Supplements')">Health Foods and Supplements</button>
-            <button onclick="filterCategory('Create your own gift box')">Create Your Own Gift Box</button>
+            <button onclick="filterCategory('Health Foods & Supplements')">Health Foods and Supplements</button>
+            <button onclick="filterCategory('Create a gift box')">Create Your Own Gift Box</button>
         </div>
 
         <!-- Product List -->
@@ -235,6 +255,7 @@
                     <option value="100">100g - R25</option>
                     <option value="250">250g - R60</option>
                     <option value="500">500g - R110</option>
+                    <option value="1">1kg - R200</option>
                 </select>
                 <button onclick="addToCart('Almonds', this.previousElementSibling.value)">Add to Cart</button>
             </div>
@@ -259,10 +280,22 @@
         <button onclick="confirmOrder()">Confirm Order</button>
     </div>
 
-    <!-- Special Requests -->
-    <div class="special-requests">
-        <textarea id="special-requests" rows="4" placeholder="Any special requests?"></textarea>
-    </div>
+   <div class="categories">
+    <button onclick="filterCategory('all')">All <span id="count-all"></span></button>
+    <button onclick="filterCategory('Nuts')">Nuts <span id="count-nuts"></span></button>
+    <button onclick="filterCategory('Dried Fruits')">Dried Fruits <span id="count-dried-fruits"></span></button>
+    <button onclick="filterCategory('Sweet Snacks')">Sweet Snacks <span id="count-sweet-snacks"></span></button>
+    <button onclick="filterCategory('Biltong')">Biltong <span id="count-biltong"></span></button>
+    <button onclick="filterCategory('Health Foods and Supplements')">Health Foods and Supplements <span id="count-health-foods"></span></button>
+    <button onclick="filterCategory('Create your own gift box')">Create Your Own Gift Box <span id="count-gift-box"></span></button>
+</div>
+
+<div class="social-media">
+    <div class="card" onclick="openLink('https://instagram.com')">Instagram</div>
+    <div class="card" onclick="openLink('https://tiktok.com')">TikTok</div>
+    <div class="card" onclick="openLink('https://facebook.com')">Facebook</div>
+</div>
+
 
     <!-- Social Media Section -->
     <div class="social-media">
