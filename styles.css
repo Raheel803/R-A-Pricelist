@@ -1,16 +1,28 @@
-.product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
+<style>
+    /* Updated category button style with count */
+    .categories button span {
+        float: right;
+        margin-left: 10px;
+        font-size: 0.9em;
+        color: #66a711; /* Accent color */
+    }
 
-.product-card {
-    border: 1px solid #ccc;
-    padding: 20px;
-    text-align: center;
-}
-
-.product-card img {
-    max-width: 100%;
-    height: auto;
-}
+    /* Stained Glass Effect for Social Media Cards */
+    .social-media .card {
+        flex: 1;
+        margin: 0 10px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
+        backdrop-filter: blur(10px);
+        border-radius: 10px;
+        padding: 20px;
+        color: #f3f5f1; /* Text color */
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for glass effect */
+    }
+    .social-media .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 20px rgba(102, 167, 17, 0.4); /* Accent color shadow */
+    }
+</style>
