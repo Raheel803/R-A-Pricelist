@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +12,7 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ffffff; /* Updated background color to white */
+            background-color: #ffffff; /* Background color */
             color: #e5f0d6; /* Primary text color */
         }
 
@@ -54,13 +56,13 @@
         }
         .categories button {
             padding: 10px 15px;
-            background-color: transparent; /* Transparent buttons */
-            color: #e5f0d6; /* Primary color */
+            background-color: #1B1C1E; /* Updated background color */
+            color: #f3f5f1; /* Updated text color */
             border: 2px solid #66a711; /* Accent color */
             border-radius: 5px;
             cursor: pointer;
             margin: 5px;
-            font-size: 1em;
+            font-size: 0.9em; /* Reduced font size */
             font-weight: bold;
             transition: transform 0.2s ease, background-color 0.2s ease;
         }
@@ -231,89 +233,55 @@
                 <option value="2.99">100g - R2.99</option>
                 <option value="5.99">250g - R5.99</option>
             </select>
-            <button onclick="addToCart('Almonds', this)">Add to Cart</button>
+
+<button onclick="addToCart('Almonds', this.previousElementSibling.value)">Add to Cart</button>
         </div>
         <div class="product" data-category="Dried Fruits">
             <span>Dried Mango</span>
             <select>
-                <option value="3.99">100g - R3.99</option>
-                <option value="7.99">250g - R7.99</option>
+                <option value="3.49">100g - R3.49</option>
+                <option value="6.49">250g - R6.49</option>
             </select>
-            <button onclick="addToCart('Dried Mango', this)">Add to Cart</button>
+            <button onclick="addToCart('Dried Mango', this.previousElementSibling.value)">Add to Cart</button>
         </div>
-        <!-- Add more products as needed with appropriate categories -->
+
+        <!-- Add more products here -->
 
         <!-- Cart Section -->
-        <div class="cart" id="cart">
+        <div class="cart">
             <h3>Your Cart</h3>
-            <ul id="cart-items"></ul>
-            <p><strong>Total: R<span id="cart-total">0.00</span></strong></p>
-
-            <!-- Special Requests -->
-            <div class="special-requests">
-                <h4>Special Requests</h4>
-                <textarea id="special-requests" rows="3" placeholder="Add any special requests or notes here..."></textarea>
+            <ul id="cart-list"></ul>
+            <div>
+                <strong>Total: R<span id="total">0.00</span></strong>
             </div>
-
-                     <!-- Order Confirmation -->
             <button onclick="confirmOrder()">Confirm Order</button>
+        </div>
+
+        <!-- Special Requests -->
+        <div class="special-requests">
+            <h3>Special Requests</h3>
+            <textarea id="special-requests" rows="4" placeholder="Any special notes for your order..."></textarea>
         </div>
     </main>
 
     <!-- Social Media Section -->
-    <footer>
-        <div class="social-media">
-            <div class="card" onclick="window.open('https://instagram.com', '_blank')">
-                <h4>Follow us on Instagram</h4>
-            </div>
-            <div class="card" onclick="window.open('https://tiktok.com', '_blank')">
-                <h4>Watch us on TikTok</h4>
-            </div>
-            <div class="card" onclick="window.open('https://facebook.com', '_blank')">
-                <h4>Like us on Facebook</h4>
-            </div>
+    <div class="social-media">
+        <div class="card" onclick="window.open('https://instagram.com', '_blank')">
+            <h3>Instagram</h3>
         </div>
-    </footer>
+        <div class="card" onclick="window.open('https://tiktok.com', '_blank')">
+            <h3>TikTok</h3>
+        </div>
+        <div class="card" onclick="window.open('https://facebook.com', '_blank')">
+            <h3>Facebook</h3>
+        </div>
+    </div>
 
     <script>
+        // JavaScript functionality for filtering, adding to cart, and confirming orders
         const cart = [];
-        const cartItems = document.getElementById('cart-items');
-        const cartTotal = document.getElementById('cart-total');
-
-        function addToCart(productName, selectElement) {
-            const price = parseFloat(selectElement.previousElementSibling.value);
-            cart.push({ name: productName, price });
-            updateCart();
-        }
-
-        function updateCart() {
-            cartItems.innerHTML = '';
-            let total = 0;
-            cart.forEach((item, index) => {
-                total += item.price;
-                const li = document.createElement('li');
-                li.innerHTML = `${item.name} - R${item.price.toFixed(2)} 
-                                <button onclick="removeFromCart(${index})">Remove</button>`;
-                cartItems.appendChild(li);
-            });
-            cartTotal.innerText = total.toFixed(2);
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
-        function confirmOrder() {
-            const specialRequests = document.getElementById('special-requests').value;
-            const orderSummary = cart.map(item => `${item.name} - R${item.price.toFixed(2)}`).join('\n');
-            const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
-
-            const message = `Order Details:\n${orderSummary}\n\nTotal: R${total}\n\nSpecial Requests: ${specialRequests}`;
-            const whatsappNumber = 'your-whatsapp-number'; // Replace with your WhatsApp number
-            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappLink, '_blank');
-        }
+        const totalElement = document.getElementById('total');
+        const cartList = document.getElementById('cart-list');
 
         function filterCategory(category) {
             const products = document.querySelectorAll('.product');
@@ -324,6 +292,44 @@
                     product.classList.add('hidden');
                 }
             });
+        }
+
+        function addToCart(productName, productPrice) {
+            const price = parseFloat(productPrice);
+            cart.push({ name: productName, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            cartList.innerHTML = '';
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `${item.name} - R${item.price.toFixed(2)}
+                    <button onclick="removeFromCart(${index})">Remove</button>`;
+                cartList.appendChild(listItem);
+            });
+            totalElement.textContent = total.toFixed(2);
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function confirmOrder() {
+            const specialNotes = document.getElementById('special-requests').value;
+            let message = 'Order Summary:\n';
+            cart.forEach(item => {
+                message += `${item.name} - R${item.price.toFixed(2)}\n`;
+            });
+            message += `Total: R${totalElement.textContent}\n`;
+            if (specialNotes) {
+                message += `Special Requests: ${specialNotes}`;
+            }
+            const whatsappUrl = `https://wa.me/your-number?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
