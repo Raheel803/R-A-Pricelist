@@ -53,18 +53,22 @@
             align-items: flex-start;
         }
         .categories button {
-            background: none;
-            color: #434343;
-            border: none;
-            border-bottom: 2px solid #66a711;
-            padding: 5px 0;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-family: 'NEOTERIC', sans-serif;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: color 0.2s ease, text-shadow 0.2s ease;
-        }
+    font-family: 'NEOTERIC', sans-serif; /* Use NEOTERIC font */
+    font-weight: bold; /* Apply bold style */
+    background: none;
+    color: #434343;
+    border: none;
+    border-bottom: 2px solid #66a711;
+    padding: 5px 0;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    text-align: left; /* Ensure all text aligns to the left */
+    width: 100%; /* Standardize button width */
+    white-space: nowrap; /* Prevent wrapping */
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
         .categories button:hover {
             color: #67ff00;
             text-shadow: 0 4px 6px rgba(103, 255, 0, 0.5);
