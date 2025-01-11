@@ -5,13 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>R&A Snacks - Pricelist/Order Form</title>
     <style>
+        @font-face {
+            font-family: 'NEOTERIC';
+            src: url('path-to-neoteric-font.woff') format('woff');
+            font-weight: bold;
+        }
+
         /* General styles */
         body {
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #ececec; /* Background color */
-            color: #434343; /* Text color */
+            background-color: #ececec;
+            color: #434343;
         }
 
         /* Header */
@@ -54,12 +60,13 @@
             padding: 5px 0;
             margin-bottom: 10px;
             cursor: pointer;
+            font-family: 'NEOTERIC', sans-serif;
             font-size: 1.1em;
             font-weight: bold;
             transition: color 0.2s ease, text-shadow 0.2s ease;
         }
         .categories button:hover {
-            color: #67ff00; /* Highlight color */
+            color: #67ff00;
             text-shadow: 0 4px 6px rgba(103, 255, 0, 0.5);
         }
 
@@ -111,6 +118,19 @@
             background-color: #ffffff;
             color: #434343;
         }
+        .cart-items {
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+        }
+        .cart-total {
+            font-weight: bold;
+            margin-top: 10px;
+        }
         .cart button {
             margin-top: 10px;
             padding: 10px 15px;
@@ -158,10 +178,48 @@
                     <option value="500">500g - R95</option>
                     <option value="1000">1kg - R180</option>
                 </select>
-                <button onclick="addToCart('Almonds')">Add to Cart</button>
+                <button onclick="addToCart('Almonds', 50)">Add to Cart</button>
             </div>
         </div>
+
+        <!-- Cart Section -->
+        <div class="cart">
+            <h3>Your Cart</h3>
+            <div class="cart-items"></div>
+            <div class="cart-total">Total: R0</div>
+            <button onclick="confirmOrder()">Confirm Order</button>
+        </div>
     </main>
+
+    <script>
+        const cartItems = [];
+        const cartTotal = document.querySelector('.cart-total');
+
+        function addToCart(item, price) {
+            cartItems.push({ item, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.querySelector('.cart-items');
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cartItems.forEach((cartItem) => {
+                total += cartItem.price;
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.textContent = `${cartItem.item} - R${cartItem.price}`;
+                cartItemsContainer.appendChild(itemElement);
+            });
+
+            cartTotal.textContent = `Total: R${total}`;
+        }
+
+        function confirmOrder() {
+            alert('Order confirmed!');
+        }
+    </script>
 </body>
 </html>
 
