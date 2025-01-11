@@ -13,7 +13,7 @@
 
         /* General styles */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'NEOTERIC', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #ececec;
@@ -151,6 +151,20 @@
             box-shadow: 0 0 15px #66a711;
             transform: translateY(-5px);
         }
+        /* Custom Mouse Pointer */
+.pointer {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background-color: #434343; /* Dot color */
+    border: 2px solid #66a711; /* Square outline color */
+    border-radius: 50%;
+    pointer-events: none; /* Prevent interactions */
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    transition: transform 0.1s ease-out;
+}
+
     </style>
 </head>
 <body>
@@ -223,6 +237,23 @@
         function confirmOrder() {
             alert('Order confirmed!');
         }
+        <script>
+    // Create the custom pointer element
+    const pointer = document.createElement('div');
+    pointer.classList.add('pointer');
+    document.body.appendChild(pointer);
+
+    // Update the pointer position on mouse move
+    document.addEventListener('mousemove', (e) => {
+        pointer.style.top = `${e.clientY}px`;
+        pointer.style.left = `${e.clientX}px`;
+        pointer.style.transform = 'translate(-50%, -50%) scale(1.2)';
+        setTimeout(() => {
+            pointer.style.transform = 'translate(-50%, -50%) scale(1)';
+        }, 100);
+    });
+</script>
+
     </script>
 </body>
 </html>
