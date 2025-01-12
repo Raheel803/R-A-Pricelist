@@ -27,7 +27,7 @@
         header p {
             margin: 5px 0 0;
             font-size: 1.2em;
-            color: #00ff37; /* Changed color */
+            color: #5500cd; /* Updated color */
         }
 
         /* Main content */
@@ -59,7 +59,7 @@
             transition: color 0.2s ease, text-shadow 0.2s ease;
         }
         .categories button:hover {
-            color: #fa7000; /* Highlight color */
+            color: #fa7000; /* Updated highlight color */
             text-shadow: 0 4px 6px rgba(250, 112, 0, 0.5);
         }
 
@@ -75,6 +75,7 @@
             align-items: center;
             padding: 10px;
             border-bottom: 1px solid #434343;
+            font-family: 'Georgia', serif; /* Elegant font */
         }
         .product span {
             font-size: 1.1em;
@@ -90,7 +91,7 @@
         .product button {
             padding: 10px 15px;
             font-size: 1em;
-            background-color: #00eb33; /* Button background color */
+            background-color: #00eb33; /* Updated button background color */
             color: #ffffff;
             border: none;
             border-radius: 5px;
@@ -104,7 +105,6 @@
 
         /* Cart Section */
         .cart {
-            flex: 1;
             margin-top: 20px;
             padding: 15px;
             border: 1px solid #66a711;
@@ -112,20 +112,20 @@
             background-color: #ffffff;
             color: #434343;
         }
-        .cart h2 {
-            margin: 0;
-            margin-bottom: 10px;
-            font-size: 1.5em;
-        }
-        .cart-items {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .cart-items li {
+        .cart-item {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 5px;
+            align-items: center;
+            padding: 5px 0;
+        }
+        .cart-item button {
+            padding: 5px 10px;
+            font-size: 0.9em;
+            background-color: #ff4d4d; /* Remove button color */
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
         .cart button {
             margin-top: 10px;
@@ -159,6 +159,10 @@
             <button onclick="filterCategory('all')">All</button>
             <button onclick="filterCategory('Nuts')">Nuts</button>
             <button onclick="filterCategory('Dried Fruits')">Dried Fruits</button>
+            <button onclick="filterCategory('Sweet Snacks')">Sweet Snacks</button>
+            <button onclick="filterCategory('Biltong')">Biltong</button>
+            <button onclick="filterCategory('Health Foods and Supplements')">Health Foods and Supplements</button>
+            <button onclick="filterCategory('Create your own gift box')">Create Your Own Gift Box</button>
         </div>
 
         <!-- Product List -->
@@ -168,6 +172,7 @@
                 <select>
                     <option value="250">250g - R50</option>
                     <option value="500">500g - R95</option>
+                    <option value="1000">1kg - R180</option>
                 </select>
                 <button onclick="addToCart('Almonds')">Add to Cart</button>
             </div>
@@ -175,33 +180,65 @@
 
         <!-- Cart Section -->
         <div class="cart">
-            <h2>Cart</h2>
-            <ul class="cart-items">
-                <!-- Cart items will be added dynamically -->
-            </ul>
-            <p><strong>Total:</strong> R<span id="cart-total">0</span></p>
-            <button>Confirm Order</button>
+            <h3>Your Cart</h3>
+            <div id="cart-items"></div>
+            <p>Total: R<span id="total-price">0</span></p>
+            <button onclick="confirmOrder()">Confirm Order</button>
         </div>
     </main>
 
     <script>
-        // JavaScript to manage the cart functionality
-        const cartItems = [];
+        let cart = [];
+
         function addToCart(product) {
-            cartItems.push(product);
-            renderCart();
+            const selectElement = document.querySelector(`[data-category='Nuts'] select`);
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const price = parseInt(selectedOption.value);
+
+            cart.push({ name: product, price });
+            updateCart();
         }
 
-        function renderCart() {
-            const cartList = document.querySelector('.cart-items');
-            const totalDisplay = document.getElementById('cart-total');
-            cartList.innerHTML = '';
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+
+            cartItemsContainer.innerHTML = '';
             let total = 0;
-            cartItems.forEach(item => {
-                total += 50; // Dummy price for simplicity
-                cartList.innerHTML += `<li>${item} - R50</li>`;
+
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <span>${item.name} - R${item.price}</span>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+                total += item.price;
             });
-            totalDisplay.textContent = total;
+
+            totalPriceElement.textContent = total;
+        }
+
+        function confirmOrder() {
+            alert('Order confirmed!');
+        }
+
+        function filterCategory(category) {
+            const products = document.querySelectorAll('.product');
+
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
         }
     </script>
 </body>
