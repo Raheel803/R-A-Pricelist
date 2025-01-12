@@ -104,12 +104,28 @@
 
         /* Cart Section */
         .cart {
+            flex: 1;
             margin-top: 20px;
             padding: 15px;
             border: 1px solid #66a711;
             border-radius: 8px;
             background-color: #ffffff;
             color: #434343;
+        }
+        .cart h2 {
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+        .cart-items {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .cart-items li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
         }
         .cart button {
             margin-top: 10px;
@@ -143,10 +159,6 @@
             <button onclick="filterCategory('all')">All</button>
             <button onclick="filterCategory('Nuts')">Nuts</button>
             <button onclick="filterCategory('Dried Fruits')">Dried Fruits</button>
-            <button onclick="filterCategory('Sweet Snacks')">Sweet Snacks</button>
-            <button onclick="filterCategory('Biltong')">Biltong</button>
-            <button onclick="filterCategory('Health Foods and Supplements')">Health Foods and Supplements</button>
-            <button onclick="filterCategory('Create your own gift box')">Create Your Own Gift Box</button>
         </div>
 
         <!-- Product List -->
@@ -156,12 +168,42 @@
                 <select>
                     <option value="250">250g - R50</option>
                     <option value="500">500g - R95</option>
-                    <option value="1000">1kg - R180</option>
                 </select>
                 <button onclick="addToCart('Almonds')">Add to Cart</button>
             </div>
         </div>
+
+        <!-- Cart Section -->
+        <div class="cart">
+            <h2>Cart</h2>
+            <ul class="cart-items">
+                <!-- Cart items will be added dynamically -->
+            </ul>
+            <p><strong>Total:</strong> R<span id="cart-total">0</span></p>
+            <button>Confirm Order</button>
+        </div>
     </main>
+
+    <script>
+        // JavaScript to manage the cart functionality
+        const cartItems = [];
+        function addToCart(product) {
+            cartItems.push(product);
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartList = document.querySelector('.cart-items');
+            const totalDisplay = document.getElementById('cart-total');
+            cartList.innerHTML = '';
+            let total = 0;
+            cartItems.forEach(item => {
+                total += 50; // Dummy price for simplicity
+                cartList.innerHTML += `<li>${item} - R50</li>`;
+            });
+            totalDisplay.textContent = total;
+        }
+    </script>
 </body>
 </html>
 
