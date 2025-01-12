@@ -10,186 +10,183 @@
             font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0; /* Light gray background */
-            color: #333;
+            background-color: #ececec;
+            color: #434343;
         }
 
         /* Header */
         header {
-            background-color: #66a711; /* Green background */
-            color: #fff;
-            padding: 1rem 0;
+            padding: 20px 0;
             text-align: center;
         }
-
         header h1 {
             margin: 0;
-            font-size: 2rem;
+            font-size: 2.5em;
+            color: #434343;
+        }
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
+            color: #5500cd;
         }
 
         /* Main content */
         main {
-            max-width: 960px;
-            margin: 2rem auto;
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-            gap: 2rem;
-            padding: 1rem;
+            max-width: 1200px;
+            margin: 20px auto;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
         }
 
         /* Categories Filter */
         .categories {
+            flex: 1;
             display: flex;
             flex-direction: column;
+            align-items: flex-start;
         }
-
         .categories button {
             background: none;
+            color: #434343;
             border: none;
-            padding: 0.5rem 0;
-            margin-bottom: 0.5rem;
+            border-bottom: 2px solid #66a711;
+            padding: 5px 0;
+            margin-bottom: 10px;
             cursor: pointer;
-            font-size: 1rem;
+            font-size: 1.1em;
             font-weight: bold;
-            transition: color 0.2s ease;
+            text-align: left;
+            transition: color 0.2s ease, text-shadow 0.2s ease;
         }
-
-        .categories button.active {
-            color: #66a711; /* Highlight active category */
+        .categories button:hover {
+            color: #fa7000;
+            text-shadow: 0 4px 6px rgba(250, 112, 0, 0.5);
         }
 
         /* Product List */
         .products {
+            flex: 3;
             display: flex;
             flex-direction: column;
-            gap: 1rem;
         }
-
         .product {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
+            padding: 10px;
+            border-bottom: 1px solid #434343;
+            font-family: 'Georgia', serif;
         }
-
         .product span {
-            font-size: 1rem;
+            font-size: 1.1em;
         }
-
         .product select {
-            padding: 0.5rem;
-            font-size: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 3px;
+            padding: 5px;
+            font-size: 1em;
+            border: 1px solid #66a711;
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: #434343;
         }
-
         .product button {
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            background-color: #4CAF50; /* Green button */
-            color: #fff;
+            padding: 10px 15px;
+            font-size: 1em;
+            background-color: #00eb33;
+            color: #021407; /* Updated text color */
             border: none;
-            border-radius: 3px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
         }
-
         .product button:hover {
-            background-color: #3e8e41; /* Darker green on hover */
+            box-shadow: 0 0 10px #808080, 0 -10px 10px #ffffff;
+            transform: scale(1.05);
         }
 
         /* Cart Section */
         .cart {
-            padding: 1rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #fff;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #66a711;
+            border-radius: 8px;
+            background-color: #ffffff;
+            color: #434343;
         }
-
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 0;
+            padding: 5px 0;
         }
-
         .cart-item button {
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
-            background-color: #f44336; /* Red for remove button */
-            color: #fff;
+            padding: 5px 10px;
+            font-size: 0.9em;
+            background-color: #ff4d4d;
+            color: #ffffff;
             border: none;
-            border-radius: 3px;
+            border-radius: 5px;
             cursor: pointer;
         }
-
         .cart button {
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
+            margin-top: 10px;
+            padding: 10px 15px;
             font-weight: bold;
-            background-color: #007bff; /* Blue for confirm order */
-            color: #fff;
+            background-color: #1193f8;
+            color: #ffffff;
             border: none;
-            border-radius: 3px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
         }
-
         .cart button:hover {
-            background-color: #0069d9;
+            background-color: #0d6eb8;
+            box-shadow: 0 0 15px #1193f8;
+            transform: translateY(-5px);
         }
 
         /* Footer */
         footer {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem 0;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: #434343;
+            color: #ececec;
             text-align: center;
         }
-
-        .social-media,
-        .contact-us {
+        .social-media, .contact-us {
             display: flex;
-            justify-content: center;
-            gap: 1rem;
-            padding: 1rem 0;
+            justify-content: space-around;
+            padding: 20px 0;
         }
-
-        .social-media a,
-        .contact-us a {
-            color: #fff;
-            font-size: 1rem;
+        .social-media a, .contact-us a {
+            color: #ececec;
+            font-size: 1.2em;
             text-decoration: none;
             transition: color 0.3s ease;
         }
-
-        .social-media a:hover,
-        .contact-us a:hover {
-            color: #66a711; /* Green for hover effect */
+        .social-media a:hover, .contact-us a:hover {
+            color: #fa7000;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>R&A Snacks</h1>
+        <p>Pricelist/Order Form</p>
     </header>
 
     <main>
         <div class="categories">
-            <button onclick="filterCategory('all')" class="active">All</button>
+            <button onclick="filterCategory('all')">All</button>
             <button onclick="filterCategory('Nuts')">Nuts</button>
             <button onclick="filterCategory('Dried Fruits')">Dried Fruits</button>
             <button onclick="filterCategory('Sweet Snacks')">Sweet Snacks</button>
             <button onclick="filterCategory('Special Mixes')">Special Mixes</button>
-            <button onclick="filterCategory('Gift Boxes')">Create Your Own Gift Box</button>
+            <button onclick="filterCategory('Create your own gift box')">Create Your Own Gift Box</button>
         </div>
-
         <div class="products">
-            </div>
-
+            <!-- Placeholder for products -->
+        </div>
         <div class="cart">
             <h3>Your Cart</h3>
             <div id="cart-items"></div>
@@ -211,12 +208,60 @@
     </footer>
 
     <script>
-        // ... (Your JavaScript code here) ...
+        let cart = [];
+
+        function addToCart(product) {
+            const selectElement = document.querySelector(`[data-category='Nuts'] select`);
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const price = parseInt(selectedOption.value);
+
+            cart.push({ name: product, price });
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+
+            cartItemsContainer.innerHTML = '';
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                cartItem.innerHTML = `
+                    <span>${item.name} - R${item.price}</span>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItem);
+                total += item.price;
+            });
+
+            totalPriceElement.textContent = total;
+        }
+
+        function confirmOrder() {
+            alert('Order confirmed!');
+        }
+
+        function filterCategory(category) {
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                if (category === 'all' || product.dataset.category === category) {
+                    product.style.display = 'flex';
+                } else {
+                    product.style.display = 'none';
+                }
+            });
+        }
     </script>
 </body>
 </html>
-
-
 
 
 
