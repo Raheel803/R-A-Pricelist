@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>R&A Snacks - Pricelist/Order Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* General styles */
         body {
@@ -80,31 +81,6 @@
             border-bottom: 1px solid #434343;
             font-family: 'Georgia', serif;
         }
-        .product span {
-            font-size: 1.1em;
-        }
-        .product select {
-            padding: 5px;
-            font-size: 1em;
-            border: 1px solid #66a711;
-            border-radius: 5px;
-            background-color: #ffffff;
-            color: #434343;
-        }
-        .product button {
-            padding: 10px 15px;
-            font-size: 1em;
-            background-color: #00eb33;
-            color: #021407; /* Updated text color */
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.3s ease;
-        }
-        .product button:hover {
-            box-shadow: 0 0 10px #808080, 0 -10px 10px #ffffff;
-            transform: scale(1.05);
-        }
 
         /* Cart Section */
         .cart {
@@ -115,29 +91,15 @@
             background-color: #ffffff;
             color: #434343;
         }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 0;
-        }
-        .cart-item button {
-            padding: 5px 10px;
-            font-size: 0.9em;
-            background-color: #ff4d4d;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
         .cart button {
             margin-top: 10px;
             padding: 10px 15px;
             font-weight: bold;
             background-color: #1193f8;
-            color: #ffffff;
+            color: #000000;
             border: none;
             border-radius: 5px;
+            font-size: 1.1em; /* Adjusted font size */
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.3s ease;
         }
@@ -149,7 +111,7 @@
 
         /* Footer */
         footer {
-            margin-top: 50px;
+            margin-top: 100px; /* Adjusted to lower the social media section */
             padding: 20px;
             background-color: #000000;
             color: #ececec;
@@ -210,60 +172,6 @@
             <a href="tel:+123456789">Call Us</a>
         </div>
     </footer>
-
-    <script>
-        let cart = [];
-
-        function addToCart(product) {
-            const selectElement = document.querySelector(`[data-category='Nuts'] select`);
-            const selectedOption = selectElement.options[selectElement.selectedIndex];
-            const price = parseInt(selectedOption.value);
-
-            cart.push({ name: product, price });
-            updateCart();
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
-        function updateCart() {
-            const cartItemsContainer = document.getElementById('cart-items');
-            const totalPriceElement = document.getElementById('total-price');
-
-            cartItemsContainer.innerHTML = '';
-            let total = 0;
-
-            cart.forEach((item, index) => {
-                const cartItem = document.createElement('div');
-                cartItem.className = 'cart-item';
-                cartItem.innerHTML = `
-                    <span>${item.name} - R${item.price}</span>
-                    <button onclick="removeFromCart(${index})">Remove</button>
-                `;
-                cartItemsContainer.appendChild(cartItem);
-                total += item.price;
-            });
-
-            totalPriceElement.textContent = total;
-        }
-
-        function confirmOrder() {
-            alert('Order confirmed!');
-        }
-
-        function filterCategory(category) {
-            const products = document.querySelectorAll('.product');
-            products.forEach(product => {
-                if (category === 'all' || product.dataset.category === category) {
-                    product.style.display = 'flex';
-                } else {
-                    product.style.display = 'none';
-                }
-            });
-        }
-    </script>
 </body>
 </html>
 
