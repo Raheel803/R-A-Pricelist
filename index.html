@@ -99,7 +99,7 @@
             color: #000000;
             border: none;
             border-radius: 5px;
-            font-size: 0.9em; /* Reduced font size */
+            font-size: 1em; /* Reduced font size */
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.3s ease;
         }
@@ -115,25 +115,25 @@
             padding: 20px;
             background-color: #000000;
             color: #ececec;
-            text-align: left; /* Align content to the left */
+            text-align: center;
         }
         .social-media {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 5px 0; /* Further reduced padding */
+            padding: 10px 0; /* Reduced padding */
         }
         .contact-us {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 10px 0; /* Further reduced padding */
+            padding: 20px 0;
         }
         .social-media a, .contact-us a {
             color: #ececec;
             font-size: 1.2em;
             text-decoration: none;
-            margin-bottom: 5px; /* Reduced margin */
+            margin-bottom: 10px;
             transition: color 0.3s ease;
         }
         .social-media a:hover, .contact-us a:hover {
@@ -156,8 +156,38 @@
             <button onclick="filterCategory('Special Mixes')">Special Mixes</button>
             <button onclick="filterCategory('Create your own gift box')">Create Your Own Gift Box</button>
         </div>
-        <div class="products">
-            <!-- Placeholder for products -->
+        <div class="products" id="products">
+            <div class="product" data-category="Nuts">
+                <span>Raw Almonds</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Raw Almonds')">Add to Cart</button>
+            </div>
+            <div class="product" data-category="Nuts">
+                <span>Salted Almonds</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Salted Almonds')">Add to Cart</button>
+            </div>
+            <div class="product" data-category="Nuts">
+                <span>Caramel Almonds</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Caramel Almonds')">Add to Cart</button>
+            </div>
+            <!-- Additional products for the "Nuts" category will follow the same structure -->
         </div>
         <div class="cart">
             <h3>Your Cart</h3>
@@ -180,7 +210,6 @@
     </footer>
 </body>
 </html>
-
 
 
 
