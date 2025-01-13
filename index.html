@@ -22,6 +22,7 @@
         header h1 {
             margin: 0;
             font-size: 2.5em;
+            font-family: 'Georgia', serif;
             color: #434343;
         }
         header p {
@@ -57,11 +58,12 @@
             font-size: 1.1em;
             font-weight: bold;
             text-align: left;
-            transition: color 0.2s ease, text-shadow 0.2s ease;
+            transition: color 0.2s ease, text-shadow 0.2s ease, transform 0.2s ease;
         }
         .categories button:hover {
             color: #fa7000;
             text-shadow: 0 4px 6px rgba(250, 112, 0, 0.5);
+            transform: translateY(-2px);
         }
 
         /* Product List */
@@ -149,19 +151,21 @@
         footer {
             margin-top: 50px;
             padding: 20px;
-            background-color: #434343;
+            background-color: #000000;
             color: #ececec;
             text-align: center;
         }
         .social-media, .contact-us {
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
+            align-items: flex-start;
             padding: 20px 0;
         }
         .social-media a, .contact-us a {
             color: #ececec;
             font-size: 1.2em;
             text-decoration: none;
+            margin-bottom: 10px;
             transition: color 0.3s ease;
         }
         .social-media a:hover, .contact-us a:hover {
@@ -262,6 +266,7 @@
     </script>
 </body>
 </html>
+
 
 
 
