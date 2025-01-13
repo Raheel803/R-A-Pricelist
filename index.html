@@ -52,7 +52,7 @@
             background: none;
             color: #434343;
             border: none;
-            border-bottom: 2px solid #66a711;
+            border-bottom: 2px solid #0bff00; /* Updated underline color */
             padding: 5px 0;
             margin-bottom: 10px;
             cursor: pointer;
@@ -99,7 +99,7 @@
             color: #000000;
             border: none;
             border-radius: 5px;
-            font-size: 1.1em; /* Adjusted font size */
+            font-size: 0.9em; /* Reduced font size */
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.3s ease;
         }
@@ -111,23 +111,29 @@
 
         /* Footer */
         footer {
-            margin-top: 100px; /* Adjusted to lower the social media section */
+            margin-top: 100px;
             padding: 20px;
             background-color: #000000;
             color: #ececec;
-            text-align: center;
+            text-align: left; /* Align content to the left */
         }
-        .social-media, .contact-us {
+        .social-media {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            padding: 20px 0;
+            padding: 5px 0; /* Further reduced padding */
+        }
+        .contact-us {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 10px 0; /* Further reduced padding */
         }
         .social-media a, .contact-us a {
             color: #ececec;
             font-size: 1.2em;
             text-decoration: none;
-            margin-bottom: 10px;
+            margin-bottom: 5px; /* Reduced margin */
             transition: color 0.3s ease;
         }
         .social-media a:hover, .contact-us a:hover {
@@ -174,6 +180,7 @@
     </footer>
 </body>
 </html>
+
 
 
 
