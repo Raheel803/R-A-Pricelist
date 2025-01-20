@@ -15,6 +15,33 @@
             color: #434343;
         }
 
+        /* Popup styles */
+        #popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 1.2em;
+            text-align: center;
+            z-index: 1000;
+        }
+        #popup button {
+            background-color: #fa7000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+        }
+
         /* Header */
         header {
             padding: 20px 0;
@@ -24,12 +51,6 @@
             margin: 0;
             font-size: 2.5em;
             font-family: 'Georgia', serif;
-            color: #434343;
-        }
-        header p {
-            margin: 5px 0 0;
-            font-size: 1.2em;
-            color: #5500cd;
         }
 
         /* Main content */
@@ -41,37 +62,29 @@
             padding: 20px;
         }
 
-        /* Categories Filter */
+        /* Categories */
         .categories {
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
         }
         .categories button {
             background: none;
             color: #434343;
             border: none;
-            border-bottom: 2px solid #0bff00; /* Updated underline color */
+            border-bottom: 2px solid #0bff00;
             padding: 5px 0;
             margin-bottom: 10px;
             cursor: pointer;
             font-size: 1.1em;
             font-weight: bold;
-            text-align: left;
-            transition: color 0.2s ease, text-shadow 0.2s ease, transform 0.2s ease;
+            transition: transform 0.2s ease;
         }
         .categories button:hover {
-            color: #fa7000;
-            text-shadow: 0 4px 6px rgba(250, 112, 0, 0.5);
             transform: translateY(-2px);
         }
 
-        /* Product List */
+        /* Products */
         .products {
             flex: 3;
-            display: flex;
-            flex-direction: column;
         }
         .product {
             display: flex;
@@ -82,81 +95,61 @@
             font-family: 'Georgia', serif;
         }
 
-        /* Cart Section */
+        /* Cart */
         .cart {
             margin-top: 20px;
             padding: 15px;
             border: 1px solid #66a711;
+            background-color: #fff;
             border-radius: 8px;
-            background-color: #ffffff;
-            color: #434343;
         }
         .cart button {
             margin-top: 10px;
             padding: 10px 15px;
             font-weight: bold;
             background-color: #1193f8;
-            color: #000000;
+            color: #000;
             border: none;
             border-radius: 5px;
-            font-size: 0.9em; /* Reduced font size */
+            font-size: 1em; /* Adjusted text size */
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            transition: transform 0.2s ease;
         }
-        .cart button:hover {
-            background-color: #0d6eb8;
-            box-shadow: 0 0 15px #1193f8;
-            transform: translateY(-5px);
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background-color: #000000;
-            color: #ececec;
-            text-align: center;
-        }
-        .social-media {
+        .cart-item {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 5px 0; /* Reduced padding */
-        }
-        .contact-us {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 10px 0;
-        }
-        .social-media a, .contact-us a {
-            color: #ececec;
-            font-size: 1.2em;
-            text-decoration: none;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 10px;
-            transition: color 0.3s ease;
         }
-        .social-media a:hover, .contact-us a:hover {
-            color: #fa7000;
+        .cart-item button {
+            background-color: #fa7000;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
+    <div id="popup">
+        <div>
+            <p>When you click the "Confirm Order" button, your order will be sent to our WhatsApp and you will be redirected to a chat with us.</p>
+            <button onclick="closePopup()">Okay</button>
+        </div>
+    </div>
+
     <header>
         <h1>R&A Snacks</h1>
-        <p>Pricelist/Order Form</p>
     </header>
 
     <main>
         <div class="categories">
-            <button onclick="filterCategory('all')">All</button>
             <button onclick="filterCategory('Nuts')">Nuts</button>
             <button onclick="filterCategory('Dried Fruits')">Dried Fruits</button>
-            <button onclick="filterCategory('Sweet Snacks')">Sweet Snacks</button>
-            <button onclick="filterCategory('Special Mixes')">Special Mixes</button>
-            <button onclick="filterCategory('Create your own gift box')">Create Your Own Gift Box</button>
         </div>
         <div class="products" id="products">
+            <!-- Nuts Category -->
             <div class="product" data-category="Nuts">
                 <span>Raw Almonds</span>
                 <select>
@@ -165,29 +158,60 @@
                     <option value="500g">500g</option>
                     <option value="1kg">1kg</option>
                 </select>
-                <button onclick="addToCart('Raw Almonds')">Add to Cart</button>
+                <button onclick="addToCart('Raw Almonds', 50)">Add to Cart</button>
             </div>
             <div class="product" data-category="Nuts">
-                <span>Salted Almonds</span>
+                <span>Pecans</span>
                 <select>
                     <option value="100g">100g</option>
                     <option value="250g">250g</option>
                     <option value="500g">500g</option>
                     <option value="1kg">1kg</option>
                 </select>
-                <button onclick="addToCart('Salted Almonds')">Add to Cart</button>
+                <button onclick="addToCart('Pecans', 60)">Add to Cart</button>
             </div>
             <div class="product" data-category="Nuts">
-                <span>Caramel Almonds</span>
+                <span>Macadamias</span>
                 <select>
                     <option value="100g">100g</option>
                     <option value="250g">250g</option>
                     <option value="500g">500g</option>
                     <option value="1kg">1kg</option>
                 </select>
-                <button onclick="addToCart('Caramel Almonds')">Add to Cart</button>
+                <button onclick="addToCart('Macadamias', 80)">Add to Cart</button>
             </div>
-            <!-- Additional products for the "Nuts" category will follow the same structure -->
+
+            <!-- Dried Fruits Category -->
+            <div class="product" data-category="Dried Fruits">
+                <span>Dried Peaches</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Dried Peaches', 40)">Add to Cart</button>
+            </div>
+            <div class="product" data-category="Dried Fruits">
+                <span>Dried Prunes</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Dried Prunes', 45)">Add to Cart</button>
+            </div>
+            <div class="product" data-category="Dried Fruits">
+                <span>Raisins</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Raisins', 30)">Add to Cart</button>
+            </div>
         </div>
         <div class="cart">
             <h3>Your Cart</h3>
@@ -197,17 +221,50 @@
         </div>
     </main>
 
-    <footer>
-        <div class="social-media">
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-            <a href="#">Twitter</a>
-        </div>
-        <div class="contact-us">
-            <a href="mailto:info@rasnacks.com">Email Us</a>
-            <a href="tel:+123456789">Call Us</a>
-        </div>
-    </footer>
+    <footer></footer>
+
+    <script>
+        const cart = [];
+        const popup = document.getElementById('popup');
+        const cartItems = document.getElementById('cart-items');
+        const totalPrice = document.getElementById('total-price');
+
+        function closePopup() {
+            popup.style.display = 'none';
+        }
+
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            updateCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+
+        function updateCart() {
+            cartItems.innerHTML = '';
+            let total = 0;
+            cart.forEach((cartItem, index) => {
+                total += cartItem.price;
+                cartItems.innerHTML += `
+                    <div class="cart-item">
+                        <span>${cartItem.item} - R${cartItem.price}</span>
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
+            });
+            totalPrice.textContent = total;
+        }
+
+        function confirmOrder() {
+            const orderSummary = cart.map(item => `${item.item} - R${item.price}`).join(', ');
+            const total = totalPrice.textContent;
+            const whatsappUrl = `https://wa.me/27656754332?text=Order%20Summary:%20${encodeURIComponent(orderSummary)}%20Total:%20R${total}`;
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
 </body>
 </html>
 
