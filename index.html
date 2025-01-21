@@ -65,6 +65,8 @@
         /* Categories */
         .categories {
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
         .categories button {
             background: none;
@@ -77,6 +79,7 @@
             font-size: 1.1em;
             font-weight: bold;
             transition: transform 0.2s ease;
+            text-align: left;
         }
         .categories button:hover {
             transform: translateY(-2px);
@@ -97,6 +100,7 @@
         .product select {
             margin-left: 10px;
             text-align: center;
+            width: 80px;
         }
 
         /* Cart */
@@ -119,6 +123,12 @@
             cursor: pointer;
             transition: transform 0.2s ease;
         }
+
+        .cart #confirm-order {
+            background-color: #fa7000;
+            color: #000;
+            font-size: 1.1em;
+        }
     </style>
 </head>
 <body>
@@ -139,75 +149,13 @@
             <button onclick="filterCategory('Dried Fruits')">Dried Fruits</button>
         </div>
         <div class="products" id="products">
-            <!-- Nuts Category -->
-            <div class="product" data-category="Nuts">
-                <span>Raw Almonds</span>
-                <select>
-                    <option value="100g">100g</option>
-                    <option value="250g">250g</option>
-                    <option value="500g">500g</option>
-                    <option value="1kg">1kg</option>
-                </select>
-                <button onclick="addToCart('Raw Almonds', 50)">Add to Cart</button>
-            </div>
-            <div class="product" data-category="Nuts">
-                <span>Pecans</span>
-                <select>
-                    <option value="100g">100g</option>
-                    <option value="250g">250g</option>
-                    <option value="500g">500g</option>
-                    <option value="1kg">1kg</option>
-                </select>
-                <button onclick="addToCart('Pecans', 60)">Add to Cart</button>
-            </div>
-            <div class="product" data-category="Nuts">
-                <span>Macadamias</span>
-                <select>
-                    <option value="100g">100g</option>
-                    <option value="250g">250g</option>
-                    <option value="500g">500g</option>
-                    <option value="1kg">1kg</option>
-                </select>
-                <button onclick="addToCart('Macadamias', 80)">Add to Cart</button>
-            </div>
-
-            <!-- Dried Fruits Category -->
-            <div class="product" data-category="Dried Fruits">
-                <span>Dried Peaches</span>
-                <select>
-                    <option value="100g">100g</option>
-                    <option value="250g">250g</option>
-                    <option value="500g">500g</option>
-                    <option value="1kg">1kg</option>
-                </select>
-                <button onclick="addToCart('Dried Peaches', 40)">Add to Cart</button>
-            </div>
-            <div class="product" data-category="Dried Fruits">
-                <span>Dried Prunes</span>
-                <select>
-                    <option value="100g">100g</option>
-                    <option value="250g">250g</option>
-                    <option value="500g">500g</option>
-                    <option value="1kg">1kg</option>
-                </select>
-                <button onclick="addToCart('Dried Prunes', 45)">Add to Cart</button>
-            </div>
-            <div class="product" data-category="Dried Fruits">
-                <span>Raisins</span>
-                <select>
-                    <option value="100g">100g</option>
-                    <option value="250g">250g</option>
-                    <option value="500g">500g</option>
-                    <option value="1kg">1kg</option>
-                </select>
-                <button onclick="addToCart('Raisins', 30)">Add to Cart</button>
-            </div>
+            <!-- Add products here -->
         </div>
         <div class="cart">
             <h3>Your Cart</h3>
             <div id="cart-items"></div>
             <p>Total: R<span id="total-price">0</span></p>
-            <button onclick="confirmOrder()">Confirm Order</button>
+            <button id="confirm-order" onclick="confirmOrder()">Confirm Order</button>
         </div>
     </main>
 
@@ -245,7 +193,7 @@
             updateCart();
         }
 
-               function confirmOrder() {
+        function confirmOrder() {
             let message = 'Your order:\n';
             cart.forEach(product => {
                 message += `- ${product.item} - R${product.price}\n`;
@@ -259,6 +207,7 @@
     </script>
 </body>
 </html>
+
 
 
 
