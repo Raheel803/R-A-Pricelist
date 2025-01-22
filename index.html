@@ -65,8 +65,7 @@
         /* Categories */
         .categories {
             flex: 1;
-            display: flex;
-            flex-direction: column;
+            text-align: left; /* Align categories to the left */
         }
         .categories button {
             background: none;
@@ -79,7 +78,6 @@
             font-size: 1.1em;
             font-weight: bold;
             transition: transform 0.2s ease;
-            text-align: left;
         }
         .categories button:hover {
             transform: translateY(-2px);
@@ -100,7 +98,6 @@
         .product select {
             margin-left: 10px;
             text-align: center;
-            width: 80px;
         }
 
         /* Cart */
@@ -124,10 +121,17 @@
             transition: transform 0.2s ease;
         }
 
-        .cart #confirm-order {
-            background-color: #fa7000;
-            color: #000;
-            font-size: 1.1em;
+        .cart button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
         }
     </style>
 </head>
@@ -149,66 +153,83 @@
             <button onclick="filterCategory('Dried Fruits')">Dried Fruits</button>
         </div>
         <div class="products" id="products">
-            <!-- Add products here -->
+            <!-- Nuts Category -->
+            <div class="product" data-category="Nuts">
+                <span>Raw Almonds</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Raw Almonds', 50)">Add to Cart</button>
+            </div>
+            <div class="product" data-category="Nuts">
+                <span>Pecans</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Pecans', 60)">Add to Cart</button>
+            </div>
+            <div class="product" data-category="Nuts">
+                <span>Macadamias</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Macadamias', 80)">Add to Cart</button>
+            </div>
+
+            <!-- Dried Fruits Category -->
+            <div class="product" data-category="Dried Fruits">
+                <span>Dried Peaches</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Dried Peaches', 40)">Add to Cart</button>
+            </div>
+            <div class="product" data-category="Dried Fruits">
+                <span>Dried Prunes</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Dried Prunes', 45)">Add to Cart</button>
+            </div>
+            <div class="product" data-category="Dried Fruits">
+                <span>Raisins</span>
+                <select>
+                    <option value="100g">100g</option>
+                    <option value="250g">250g</option>
+                    <option value="500g">500g</option>
+                    <option value="1kg">1kg</option>
+                </select>
+                <button onclick="addToCart('Raisins', 30)">Add to Cart</button>
+            </div>
         </div>
         <div class="cart">
             <h3>Your Cart</h3>
             <div id="cart-items"></div>
             <p>Total: R<span id="total-price">0</span></p>
-            <button id="confirm-order" onclick="confirmOrder()">Confirm Order</button>
+            <button onclick="confirmOrder()">Confirm Order</button>
         </div>
     </main>
 
-    <footer></footer>
-
-    <script>
-        const cart = [];
-        const popup = document.getElementById('popup');
-        const cartItems = document.getElementById('cart-items');
-        const totalPrice = document.getElementById('total-price');
-
-        function closePopup() {
-            popup.style.display = 'none';
-        }
-
-        function addToCart(item, price) {
-            cart.push({ item, price });
-            updateCart();
-        }
-
-        function updateCart() {
-            cartItems.innerHTML = '';
-            let total = 0;
-            cart.forEach((product, index) => {
-                const div = document.createElement('div');
-                div.innerHTML = `${product.item} - R${product.price} <button onclick="removeFromCart(${index})">Remove</button>`;
-                cartItems.appendChild(div);
-                total += product.price;
-            });
-            totalPrice.textContent = total;
-        }
-
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
-        }
-
-        function confirmOrder() {
-            let message = 'Your order:\n';
-            cart.forEach(product => {
-                message += `- ${product.item} - R${product.price}\n`;
-            });
-            message += `Total: R${totalPrice.textContent}\n\nThank you for your order!`;
-            const whatsappNumber = "0656754332";
-            const whatsappMessage = encodeURIComponent(message);
-            const whatsappLink = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
-            window.location.href = whatsappLink;
-        }
-    </script>
-</body>
-</html>
-
-
+    <footer>
+        <p>Follow us on:</p>
+        <p>Instagram | Facebook | Twitter</p>
+        <p>Contact us at: info@rasnacks.com</p>
+    </footer>
 
 
 
